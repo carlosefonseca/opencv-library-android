@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-plugin:1.0'
+        classpath 'com.android.tools.build:gradle:0.13.2'
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'android-maven'
+
+
+version '2.4.10'
+group 'org.opencv'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mvnRepoUrl)
+        }
+    }
+}
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.0.2"
+
+    defaultConfig {
+        applicationId "org.opencv"
+        minSdkVersion 8
+        targetSdkVersion 21
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
